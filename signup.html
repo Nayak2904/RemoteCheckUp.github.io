@@ -1,0 +1,82 @@
+<!--
+   Made By -: Python World
+   Youtube -: www.youtube.com/pythonworldtech
+   website - :www.pythonworldtech.in
+   email - :pythonworld@gmail.com
+   Copyright © 2022-23 Python World
+   -->
+   <!DOCTYPE html>
+   {% load static %}
+   <html lang="en" dir="ltr">
+      <head>
+         <meta charset="utf-8">
+         <title>Remote Health || Signup</title>
+         <link rel="icon" href="{% static 'images/loc.png'%}">
+         <link rel="stylesheet" href="{% static 'css/login_style.css' %}">
+         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+      </head>
+      <body>
+         <div class="container">
+            <header>Signup</header>
+            <!------Error message------------------------->
+            {% if messages %}
+               {% for message in messages %}
+               <p {% if message.tags %} style="color: rgb(25, 193, 25);" class="alert alert-{{message.tags}} mb-5" {% endif %} >{{message}}</p>
+               {% endfor %}
+               {% endif %}
+            {% if error %}
+            <div style="color: red;" class="alert alert-danger" role="alert">
+               {{error}}
+            </div>
+            {% endif %}
+            <!---End Error message--------------------------------------->
+            <form method="post" action="/signup">
+               {% csrf_token %}
+               <div class="input-field">
+                    <input type="text" value="{{value.first_name}}" name="first_name">
+                    <label>First Name</label>
+                 </div>
+               <div class="input-field">
+                  <input type="text" value="{{value.last_name}}" name="last_name">
+                  <label>Last Name</label>
+               </div>
+               <div class="input-field">
+                    <input type="text" value="{{value.email}}" name="email">
+                    <label>Email</label>
+                 </div>
+                 <div class="input-field">
+                    <input type="text" value="{{value.username}}" name="username">
+                    <label>Username</label>
+                 </div>
+               <div class="input-field">
+                  <input class="pswrd" type="password" name="password">
+                  <span class="show">SHOW</span>
+                  <label>Password</label>
+               </div>
+               <div class="button">
+                  <div class="inner"></div>
+                  <button type="submit">SIGNUP</button>
+               </div>
+            </form>
+            <div class="login">
+               Already a member? <a href="/">Login</a>
+            </div>
+         </div>
+         <script>
+            var input = document.querySelector('.pswrd');
+            var show = document.querySelector('.show');
+            show.addEventListener('click', active);
+            function active(){
+              if(input.type === "password"){
+                input.type = "text";
+                show.style.color = "#1DA1F2";
+                show.textContent = "HIDE";
+              }else{
+                input.type = "password";
+                show.textContent = "SHOW";
+                show.style.color = "#111";
+              }
+            }
+         </script>
+      </body>
+   </html>

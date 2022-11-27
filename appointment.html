@@ -1,0 +1,171 @@
+<!--
+   Made By -: Python World
+   Youtube -: www.youtube.com/pythonworldtech
+   website - :www.pythonworldtech.in
+   email - :pythonworld@gmail.com
+   Copyright © 2022-23 Python World
+   -->
+   <!DOCTYPE html>
+   {% load static %}
+   <html lang="en">
+      <style>
+         #chart{
+         height: 400px;
+         }
+      </style>
+      <head>
+         <title>MEDCARE || Appointment</title>
+         <link rel="icon" href="{% static 'images/loc.png'%}">
+         <meta charset="utf-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+         <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+         <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+         <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+         <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+         <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+         <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+         <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      </head>
+      <body>
+         <div class="top py-1">
+            <div class="container">
+               <div class="row">
+                  <div class="col d-flex align-items-center">
+                     <p class="mb-0">
+                        <a href="#">
+                           medcare@email.com
+                     </p>
+                  </div>
+                  <div class="col-4 d-flex justify-content-end">
+                  <div class="social-media">
+                  <p class="mb-0 d-flex">
+                  <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i class="sr-only">Facebook</i></span></a>
+                  <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+                  <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i class="sr-only">Instagram</i></span></a>
+                  <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+                  </p>
+                  </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="wrap">
+            <div class="container">
+               <div class="row justify-content-between">
+                  <div class="col-md-3 mb-md-0 mb-4 d-flex align-items-center">
+                     <a class="navbar-brand" href="index.html">MEDCARE</a>
+                  </div>
+                  <div class="col-md-7">
+                     <div class="row">
+                        <div class="col-md-8 mb-md-0 mb-3">
+                           <div class="top-wrap d-flex">
+                              <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-location-arrow"></span></div>
+                              <div class="text"><span>Address</span><span>Odisha, India</span></div>
+                           </div>
+                        </div>
+                        <div class="col">
+                           <div class="top-wrap d-flex">
+                              <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-phone"></span></div>
+                              <div class="text"><span>Call us</span><span>+91 9938965598</span></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="fa fa-bars"></span> Menu
+               </button>
+               <div class="order-lg-last">
+                  <a href="" class="btn btn-primary"><i class="fa fa-user"> {{user.first_name}} {{user.last_name}}</a></i>
+               </div>
+               <div class="collapse navbar-collapse" id="ftco-nav">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item active"><a href="/index" class="nav-link">Home</a></li>
+                     <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                     <li class="nav-item"><a href="#team" class="nav-link">Team</a></li>
+                     <li class="nav-item"><a href="/appointment" class="nav-link">Appointment</a></li>
+                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                     <li class="nav-item"><a href="/dologout" class="nav-link">Logout</a></li>
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <style>
+            .table{
+            bottom: -50px;
+            }
+         </style>
+         <!------Error message------------------------->
+         {% if messages %}
+         {% for message in messages %}
+         <p {% if message.tags %} style="color: rgb(25, 193, 25);" class="alert alert-{{message.tags}} mb-5 text-center" {% endif %} >{{message}}</p>
+         {% endfor %}
+         {% endif %}
+         <div class="col-md-12 table">
+            <div class="card card-success">
+               <div class="card-header">
+                  <h3 class="card-title">Appointment</h3>
+               </div>
+               {% if appointment %}
+               <div class="card-body">
+                  <div class="table-responsive">
+                     <table class="table table-hover table-center mb-0 datatable">
+                        <thead>
+                           <tr>
+                              <th>Name</th>
+                              <th>Phone</th>
+                              <th>Service</th>
+                              <th>Doctor</th>
+                              <th>Date</th>
+                              <th>Time</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {% for ap in appointment %}
+                           <tr>
+                              <td>{{ap.name}}</td>
+                              <td>{{ap.number}}</td>
+                              <td>{{ap.service}}</td>
+                              <td>{{ap.doctor}}</td>
+                              <td>{{ap.date}}</td>
+                              <td>{{ap.time}}</td>
+                           </tr>
+                           {% endfor %}
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+               {% else %}
+               <h1 style="color:red ;" class="text-center">No Appointment Found !!!</h1>
+               {% endif %}
+
+            </div>
+         </div>
+         </div>
+
+         <script src="{% static 'js/jquery.min.js' %}"></script>
+         <script src="{% static 'js/chart.js' %}"></script>
+         <script src="{% static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+         <script src="{% static 'js/popper.min.js' %}"></script>
+         <script src="{% static 'js/bootstrap.min.js' %}"></script>
+         <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+         <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+         <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+         <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+         <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+         <script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
+         <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+         <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+         <script src="{% static 'js/scrollax.min.js' %}"></script>
+         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+         <script src="{% static 'js/google-map.js' %}"></script>
+         <script src="{% static 'js/main.js' %}"></script>
+      </body>
+   </html>
